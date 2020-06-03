@@ -61,14 +61,6 @@ export default function Home() {
       <div className="lander">
         <h1>Scratch</h1>
         <p>A simple note taking app</p>
-        <div>
-          <Link to="/login" className="btn btn-info btn-lg">
-            login
-          </Link>
-          <Link to="/signup" className="btn btn-success btn-lg">
-            Signup
-          </Link>
-        </div>
       </div>
     );
   }
