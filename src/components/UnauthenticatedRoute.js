@@ -22,7 +22,6 @@ function queryString(name, url =window.location.href) {
 export default function UnauthenticatedRoute({ children, ...rest }) {
   const { isAuthenticated } =useAppContext();
   const redirect = queryString("redirect");
-
   return (
     <Route {...rest}>
       {!isAuthenticated ? (
