@@ -7,6 +7,7 @@ import Routes from "./Routes";
 import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
 import { onError } from "./libs/errorLib";
+import config from "./config";
 
 function App() {
   const history = useHistory();
