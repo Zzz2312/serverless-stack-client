@@ -98,6 +98,10 @@ export default function Signup() {
     function renderForm() {
       return (
         <form onSubmit={handleSubmit}>
+          <FacebookButton
+            onLogin={userHasAuthenticated(true)}
+          />
+          <hr />
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
@@ -140,10 +144,6 @@ export default function Signup() {
         
     return (
       <div className="Signup">
-        <FacebookButton
-          onLogin={userHasAuthenticated(true)}
-        />
-        <hr />
         {newUser === null? renderForm() : renderConfirmationForm()}
       </div>
     );

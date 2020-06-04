@@ -8,7 +8,7 @@ export default function FacebookButton(props) {
 
   useEffect(() => {
     onLoad();
-  });
+  },[]);
 
   async function onLoad() {
     await waitForInit();
