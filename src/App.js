@@ -19,6 +19,8 @@ function App() {
   }, []);
 
   async function onLoad() {
+    loadFacebookSDK();
+
     try {
       await Auth.currentSession();
       userHasAuthenticated(true);
@@ -30,21 +32,6 @@ function App() {
     }
 
     setIsAuthenticating(false);
-  }
-
-  async function componentDidMount() {
-    this.loadFacebookSDK();
-  
-    try {
-      await Auth.currentAuthenticatedUser();
-      this.userHasAuthenticated(true);
-    } catch (e) {
-      if (e !== "not authenticated") {
-        alert(e);
-      }
-    }
-  
-    this.setState({ isAuthenticating: false });
   }
   
   function loadFacebookSDK() {
