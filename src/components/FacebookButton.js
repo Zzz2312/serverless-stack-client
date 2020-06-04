@@ -70,6 +70,7 @@ export default class FacebookButton extends Component {
     }
   }
 
+  
   render() {
     return (
       <LoaderButton
