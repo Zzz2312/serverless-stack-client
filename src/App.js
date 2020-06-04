@@ -8,7 +8,6 @@ import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
 import { onError } from "./libs/errorLib";
 
-
 function App() {
   const history = useHistory();
   const [isauthenticating, setIsAuthenticating] = useState(true);
@@ -30,6 +29,40 @@ function App() {
     }
 
     setIsAuthenticating(false);
+  }
+
+  async function componentDidMount() {
+    this.loadFacebookSDK();
+  
+    try {
+      await Auth.currentAuthenticatedUser();
+      this.userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== "not authenticated") {
+        alert(e);
+      }
+    }
+  
+    this.setState({ isAuthenticating: false });
+  }
+  
+  function loadFacebookSDK() {
+    window.fbAsyncInit = function() {
+      window.FB.init({
+        appId            : config.social.FB,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v3.1'
+      });
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
   }
 
   async function handleLogout(){
@@ -78,5 +111,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
