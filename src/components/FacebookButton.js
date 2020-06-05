@@ -7,13 +7,14 @@ export default function FacebookButton(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    async function onLoad() {
+      await waitForInit();
+    }
     onLoad();
+    setIsLoading(false);
   },[]);
 
-  async function onLoad() {
-    await waitForInit();
-    setIsLoading(false);
-  }
+  
 
   function waitForInit() {
     return new Promise((res, rej) => {
@@ -78,6 +79,8 @@ export default function FacebookButton(props) {
         text="Login with Facebook"
         onClick={handleClick}
         disabled={isLoading}
-      />
+      >
+        Login with Facebook
+      </LoaderButton>
     );
   }

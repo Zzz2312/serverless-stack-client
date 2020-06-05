@@ -68,7 +68,10 @@ export default function Signup() {
         setIsLoading(false);
       }
     }
-
+    
+    function handleFbLogin() {
+      userHasAuthenticated(true);
+    }
 
     function renderConfirmationForm() {
       return (
@@ -98,11 +101,11 @@ export default function Signup() {
     function renderForm() {
       return (
         <form onSubmit={handleSubmit}>
-          <FacebookButton
-            onLogin={userHasAuthenticated(true)}
-          />
-          <hr />
           <FormGroup controlId="email" bsSize="large">
+            <FacebookButton
+              onLogin={handleFbLogin}
+            />
+            <hr />
             <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus

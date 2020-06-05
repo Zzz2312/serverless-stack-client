@@ -10,9 +10,7 @@ import FacebookButton from "../components/FacebookButton";
 
 export default function Login(){
     const { userHasAuthenticated } = useAppContext();
-
     const [isLoading, setIsLoading] =useState(false);
-    
     const [fields, handleFieldChange] = useFormFields({
       email: "",
       password: ""
@@ -24,7 +22,6 @@ export default function Login(){
 
     async function handleSubmit(event) {
         event.preventDefault();
-
         setIsLoading(true);
 
         try{
@@ -36,11 +33,14 @@ export default function Login(){
         }
     }
 
+    function handleFbLogin() {
+      userHasAuthenticated(true);
+    }
     return (
         <div className="Login">
           <form onSubmit={handleSubmit}>
             <FacebookButton
-              onLogin={userHasAuthenticated(true)}
+              onLogin={handleFbLogin}
             />
             <hr />
             <FormGroup controlId="email" bsSize="large">
